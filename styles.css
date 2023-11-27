@@ -83,4 +83,14 @@ button {
     color: #fff; 
 }
 
+@media only screen and (max-width: 600px) {
+    .box-container {
+        flex-direction: column;
+    }
 
+    .grupa {
+        width: 100%;
+        margin: 0;
+        margin-top: 10px;
+    }
+}

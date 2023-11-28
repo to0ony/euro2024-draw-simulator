@@ -88,8 +88,8 @@ function updateHighlightedTeams() {
     });
 }
 
-// Reset
-document.getElementById('resetButton').addEventListener('click', resetGroups);
+// old Reset
+// document.getElementById('resetButton').addEventListener('click', resetGroups);
 
 function resetGroups() {
     for (let i = 0; i < groups.length; i++) {
@@ -125,4 +125,25 @@ function markDrawnTeamInPot(potId, teamName) {
     }
 }
 
+//function for exporting groups as png
+document.getElementById('exportButton').addEventListener('click', exportAsImage);
 
+function exportAsImage() {
+    // Odabir elementa koji će se pretvoriti u sliku (u ovom slučaju, kontejner s grupama)
+    const elementToExport = document.getElementById('grupe-container');
+
+    html2canvas(elementToExport).then(canvas => {
+        // Stvaramo privremeni link za preuzimanje slike
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL(); // Slika se pretvara u URL
+
+        link.download = 'euro2024_groups.png';
+
+        // Dodajemo link u DOM i pokrećemo preuzimanje
+        document.body.appendChild(link);
+        link.click();
+
+        // Uklanjamo link iz DOM-a
+        document.body.removeChild(link);
+    });
+}

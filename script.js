@@ -132,18 +132,18 @@ function exportAsImage() {
     // Odabir elementa koji će se pretvoriti u sliku (u ovom slučaju, kontejner s grupama)
     const elementToExport = document.getElementById('grupe-container');
 
-    html2canvas(elementToExport).then(canvas => {
-        // Stvaramo privremeni link za preuzimanje slike
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL(); // Slika se pretvara u URL
+    if (elementToExport) {
+        html2canvas(elementToExport).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL();
+            link.download = 'euro2024_groups.png';
 
-        link.download = 'euro2024_groups.png';
+            document.body.appendChild(link);
+            link.click();
 
-        // Dodajemo link u DOM i pokrećemo preuzimanje
-        document.body.appendChild(link);
-        link.click();
-
-        // Uklanjamo link iz DOM-a
-        document.body.removeChild(link);
-    });
+            document.body.removeChild(link);
+        });
+    } else {
+        console.error('Element not found for export');
+    }
 }

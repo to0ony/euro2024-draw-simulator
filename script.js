@@ -72,7 +72,7 @@ function addToGroup(group, team) {
     for (let i = 0; i < teamParagraphs.length; i++) {
         if (!teamParagraphs[i].textContent) {
             teamParagraphs[i].textContent = team;
-            teamParagraphs[i].classList.add('highlighted');
+            teamParagraphs[i].classList.add('highlighted', 'fade-in');
             break;
         }
     }
